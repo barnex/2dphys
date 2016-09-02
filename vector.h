@@ -6,6 +6,7 @@
 class vector{
 	public:
 			double x, y, z;
+			double dot(vector x);
 };
 
 vector make_vector(double x, double y, double z){
@@ -21,7 +22,6 @@ vector operator+(vector a, vector b) {
     return make_vector(a.x + b.x, a.y + b.y, a.z + b.z);
 }
 
-/*
 void operator+=(vector &a, vector b) {
     a.x += b.x; 
 	a.y += b.y; 
@@ -56,11 +56,14 @@ void operator*=(vector &a, double s) {
 	a.z *= s;
 }
 
+
+
 // dot product
-double dot(vector a, vector b) { 
-	return a.x * b.x + a.y * b.y + a.z * b.z;
+double vector::dot(vector b) { 
+	return this->x * b.x + this->y * b.y + this->z * b.z;
 }
 
+/*
 // cross product
 vector cross(vector a, vector b) { 
 	return make_vector( a.y*b.z - a.z*b.y,  a.z*b.x - a.x*b.z, a.x*b.y - a.y*b.x); 
