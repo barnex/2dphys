@@ -12,5 +12,8 @@ int main(){
 		std::cout << "b: " << b << "\n";
 		std::cout << "a+b: " << a+b << "\n";
 		std::cout << "a dot b: " << a.dot(b) << "\n";
+		std::cout << "a x b: " << a.cross(b) << "\n";
+		std::cout << "a.len(): " << a.len() << "\n";
+		std::cout << "b.normalized(): " << b.normalized() << "\n";
 		return 0;
 }
