@@ -2,3 +2,5 @@
 *.gch
 *.o
 a.out
+test
+*.orig

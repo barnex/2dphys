@@ -3,4 +3,4 @@ all:
 	./test
 
 clean:
-	rm -f a.out *.o *.gch
+	rm -f a.out *.o *.gch *.orig
