@@ -5,9 +5,17 @@
 #include <cmath>
 #include "vector.h"
 
+// triangle
 class tri{
 	public:
-			vector a, b;
+			vector a, b, c;
+			bool inside(vector p);
 };
+
+
+bool tri::inside(vector p){
+	return false;
+}
+
 
 #endif

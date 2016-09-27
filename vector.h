@@ -4,6 +4,7 @@
 #include <iostream>
 #include <cmath>
 
+// 2D vector
 class vector{
 	public:
 			double x, y;
@@ -57,6 +58,10 @@ inline void operator*=(vector &a, double s) {
 	a.y *= s; 
 }
 
+inline bool operator==(const vector &a, const vector &b) {
+	return a.x == b.x && a.y == b.y;
+}
+
 // dot product
 inline double vector::dot(vector b) { 
 	return this->x * b.x + this->y * b.y;
@@ -72,6 +77,5 @@ vector vector::normalized(){
     double invlen = (this->len() != 0.0f) ? (1.0f / this->len()) : (0.0f);
 	return invlen * *this;
 }
-
 
 #endif
