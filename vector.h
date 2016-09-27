@@ -6,76 +6,68 @@
 
 class vector{
 	public:
-			double x, y, z;
+			double x, y;
 			double dot(vector x);
 			vector cross(vector b);
 			double len();
 			vector normalized();
 };
 
-vector make_vector(double x, double y, double z){
-	return vector{x, y, z};
+inline vector make_vector(double x, double y){
+	return vector{x, y};
 }
 
 std::ostream& operator<<(std::ostream& out, vector v){
-	out << "(" << v.x << "," << v.y << "," << v.z << ")";
+	out << "(" << v.x << "," << v.y << ")";
 	return out;
 }
 
-vector operator+(vector a, vector b) {
-    return make_vector(a.x + b.x, a.y + b.y, a.z + b.z);
+inline vector operator+(vector a, vector b) {
+    return make_vector(a.x + b.x, a.y + b.y);
 }
 
-void operator+=(vector &a, vector b) {
+inline void operator+=(vector &a, vector b) {
     a.x += b.x; 
 	a.y += b.y; 
-	a.z += b.z;
 }
 
-vector operator-(vector a, vector b) {
-    return make_vector(a.x - b.x, a.y - b.y, a.z - b.z);
+inline vector operator-(vector a, vector b) {
+    return make_vector(a.x - b.x, a.y - b.y);
 }
 
-vector operator-(vector a) {
-    return make_vector(-a.x, -a.y, -a.z);
+inline vector operator-(vector a) {
+    return make_vector(-a.x, -a.y);
 }
 
-void operator-=(vector &a, vector b) {
+inline void operator-=(vector &a, vector b) {
     a.x -= b.x; 
 	a.y -= b.y; 
-	a.z -= b.z;
 }
 
-vector operator*(double s, vector a) {
-    return make_vector(s*a.x, s*a.y, s*a.z);
+inline vector operator*(double s, vector a) {
+    return make_vector(s*a.x, s*a.y);
 }
 
-vector operator*(vector a, double s) {
-    return make_vector(s*a.x, s*a.y, s*a.z);
+inline vector operator*(vector a, double s) {
+    return make_vector(s*a.x, s*a.y);
 }
 
-void operator*=(vector &a, double s) {
+inline void operator*=(vector &a, double s) {
     a.x *= s; 
 	a.y *= s; 
-	a.z *= s;
 }
 
 // dot product
-double vector::dot(vector b) { 
-	return this->x * b.x + this->y * b.y + this->z * b.z;
+inline double vector::dot(vector b) { 
+	return this->x * b.x + this->y * b.y;
 }
 
-// cross product
-vector vector::cross(vector b) { 
-	return make_vector( this->y*b.z - this->z*b.y,  this->z*b.x - this->x*b.z, this->x*b.y - this->y*b.x); 
-}
-
-// lenght of the 3-components vector
-double vector::len() {
+// length
+inline double vector::len() {
 	return sqrt(this->dot(*this));
 }
 
-// returns a normalized copy of the 3-components vector
+// returns a normalized copy
 vector vector::normalized(){
     double invlen = (this->len() != 0.0f) ? (1.0f / this->len()) : (0.0f);
 	return invlen * *this;
