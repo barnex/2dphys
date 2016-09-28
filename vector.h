@@ -8,14 +8,19 @@
 class vector {
 public:
     double x, y;
+
+	vector(double x, double y);
+
     double dot(vector x);
     vector cross(vector b);
     double len();
     vector normalized();
 };
 
+vector::vector(double x, double y): x(x), y(y){}
+
 inline vector make_vector(double x, double y) {
-    return vector{x, y};
+    return vector(x, y);
 }
 
 std::ostream& operator<<(std::ostream& out, vector v) {
