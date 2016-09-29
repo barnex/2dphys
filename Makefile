@@ -1,5 +1,5 @@
 all:
-	g++ -std=c++11 -Wall -Werror test.cpp -o test
+	g++ -std=c++11 -Wall -Werror *.cpp -o test
 	./test
 
 clean:
