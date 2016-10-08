@@ -3,6 +3,7 @@
 #include <assert.h>
 #include <iostream>
 
+
 void test_vector() {
     vector a = vector(1, 0);
     assert(a == a);

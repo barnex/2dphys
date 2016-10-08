@@ -3,4 +3,5 @@
 *.o
 a.out
 test
+x11
 *.orig
