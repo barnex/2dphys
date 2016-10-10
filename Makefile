@@ -22,6 +22,7 @@ llvm: *.cpp *.h
 
 x11: *.cpp *.h
 	g++ $(CFLAGS) $(LIBFILES) x11.cpp -L/usr/lib/x86_64-linux-gnu/ -lX11 -o x11
+	clang++ $(CFLAGS) $(LIBFILES) x11.cpp -L/usr/lib/x86_64-linux-gnu/ -lX11 -o x11
 
 
 clean:
