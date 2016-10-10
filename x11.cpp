@@ -1,12 +1,14 @@
 #include <X11/Xlib.h>
-#include <string>
 #include <iostream>
+#include <string>
+#include <unistd.h>
 
-std::string progName = "";
+static Display* disp;
+static Window  win;
+static GC graphics;
 
-Display* disp;
-Window  win;
-GC graphics;
+int W = 800;
+int H = 600;
 
 int black = 0x000000;
 int white = 0xFFFFFF;
@@ -15,7 +17,7 @@ int white = 0xFFFFFF;
 void initDisp() {
 	disp = XOpenDisplay(NULL);
 	if (disp == NULL) {
-		std::cerr << progName << ": failed to open display\n";
+		std::cerr << "failed to open display\n";
 		exit(1);
 	}
 }
@@ -23,7 +25,7 @@ void initDisp() {
 
 void initWin() {
 	win = XCreateSimpleWindow(disp, DefaultRootWindow(disp),
-	                          0, 0, 200, 100, 0, white, white);
+	                          0, 0, W, H, 0, white, white);
 	XSelectInput(disp, win, StructureNotifyMask);
 	XMapWindow(disp, win);
 	graphics = XCreateGC(disp, win, 0, NULL);
@@ -43,19 +45,12 @@ void setFg(int color) {
 	XSetForeground(disp, graphics, color);
 }
 
+void clearWin() {
+	XClearWindow(disp, win);
+}
+
 void flush() {
 	XFlush(disp);
 }
 
-int main(int argc, char**argv) {
-	progName = argv[0];
-	initDisp();
-	initWin();
 
-	setFg(black);
-	drawLine(0, 0, 100, 200);
-	flush();
-
-	for ( ;; ) {}
-
-}

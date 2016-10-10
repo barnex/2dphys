@@ -1,29 +1,30 @@
 CFLAGS=\
-	-std=c++11\
-	-Wall\
+	-std=c++11 \
+	-Wall \
 	-Werror
 
+LDFLAGS=\
+	-L/usr/lib/x86_64-linux-gnu/ -lX11 
 
 LIBFILES=\
-	triangle.cpp
+	triangle.cpp \
+	x11.cpp
 
 
-all: x11 test llvm
+all: test main
 
 
 test: *.cpp *.h
-	g++ $(CFLAGS) $(LIBFILES) test.cpp -o test
+	rm -f test
+	g++ $(CFLAGS) $(LIBFILES) test.cpp $(LDFLAGS) -o test
+	clang++ $(CFLAGS) $(LIBFILES) test.cpp $(LDFLAGS) -o test
 	./test
 
 
-llvm: *.cpp *.h
-	clang++ $(CFLAGS) $(LIBFILES) test.cpp -o test
-
-
-x11: *.cpp *.h
-	g++ $(CFLAGS) $(LIBFILES) x11.cpp -L/usr/lib/x86_64-linux-gnu/ -lX11 -o x11
-	clang++ $(CFLAGS) $(LIBFILES) x11.cpp -L/usr/lib/x86_64-linux-gnu/ -lX11 -o x11
+main: *.cpp *.h
+	g++ $(CFLAGS) $(LIBFILES) main.cpp $(LDFLAGS) -o main 
+	clang++ $(CFLAGS) $(LIBFILES) main.cpp $(LDFLAGS) -o main 
 
 
 clean:
-	rm -f a.out *.o *.gch *.orig x11 test
+	rm -f a.out *.o *.gch *.orig x11 test main

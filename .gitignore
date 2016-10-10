@@ -1,7 +1,7 @@
 *.swp
 *.gch
 *.o
+*.orig
 a.out
 test
-x11
-*.orig
+main
